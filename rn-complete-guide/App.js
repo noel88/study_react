@@ -27,7 +27,7 @@ export default function App() {
            onPress={addGoalHandler}/>
      </View>
       <View>
-
+        {courseGoals.map((goal) => <Text key={goal.index}>{goal}</Text>)}
       </View>
     </View>
   );
