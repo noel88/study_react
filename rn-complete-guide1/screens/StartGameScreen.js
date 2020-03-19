@@ -8,7 +8,8 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
     Alert,
-    Dimensions
+    Dimensions,
+    KeyboardAvoidingView
 } from 'react-native';
 import Card from "../components/Card";
 import Colors from "../constants/colors";
@@ -17,6 +18,7 @@ import NumberContainer from "../components/NumberContainer";
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
 import MainButton from "../components/MainButton";
+import {ScrollView} from "react-native-web";
 
 
 const StartGameScreens = props => {
@@ -60,35 +62,39 @@ const StartGameScreens = props => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => {
-            Keyboard.dismiss();
-        }}>
-            <View style={styles.screen}>
-                <TitleText style={styles.title}>Start a New Game!</TitleText>
-                <Card style={styles.inputContainer}>
-                    <BodyText>Select a Number</BodyText>
-                    <Input
-                        style ={styles.input}
-                        blurOnSubmit
-                        autoCapitalize='none'
-                        autoCorrenct={false}
-                        keyboardType="numeric"
-                        maxLength={2}
-                        onChangeText={numberInputHandler}
-                        value={enteredValue}
-                    />
-                    <View style={styles.buttonContainer}>
-                        <View style={styles.button}>
-                            <Button title="Reset" onPress={resetInputHandler} color={Colors.accent} />
-                        </View>
-                        <View style={styles.button}>
-                            <Button title="Confirm" onPress={confirmInputHandler} color={Colors.primary} />
-                        </View>
+        <ScrollView>
+            <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+                <TouchableWithoutFeedback onPress={() => {
+                    Keyboard.dismiss();
+                }}>
+                    <View style={styles.screen}>
+                        <TitleText style={styles.title}>Start a New Game!</TitleText>
+                        <Card style={styles.inputContainer}>
+                            <BodyText>Select a Number</BodyText>
+                            <Input
+                                style ={styles.input}
+                                blurOnSubmit
+                                autoCapitalize='none'
+                                autoCorrenct={false}
+                                keyboardType="numeric"
+                                maxLength={2}
+                                onChangeText={numberInputHandler}
+                                value={enteredValue}
+                            />
+                            <View style={styles.buttonContainer}>
+                                <View style={styles.button}>
+                                    <Button title="Reset" onPress={resetInputHandler} color={Colors.accent} />
+                                </View>
+                                <View style={styles.button}>
+                                    <Button title="Confirm" onPress={confirmInputHandler} color={Colors.primary} />
+                                </View>
+                            </View>
+                        </Card>
+                        {confirmedOutput}
                     </View>
-                </Card>
-                {confirmedOutput}
-            </View>
-        </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </ScrollView>
 
     );
 };
