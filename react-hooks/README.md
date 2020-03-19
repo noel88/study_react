@@ -7,6 +7,7 @@
 - [x] useTabs 
 - [x] useTitle 
 - [x] useClick
+- [x] useConfirm
 - [ ] usePageLeave 
 - [ ] useFadeIn 
 - [ ] useFullscreen
