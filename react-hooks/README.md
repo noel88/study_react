@@ -5,6 +5,7 @@
 - [x] useTitle 
 - [x] useInput 
 - [x] useTabs 
+- [x] useTitle 
 - [ ] usePageLeave 
 - [ ] useClick
 - [ ] useFadeIn 
