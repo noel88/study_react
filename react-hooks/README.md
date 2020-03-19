@@ -6,8 +6,8 @@
 - [x] useInput 
 - [x] useTabs 
 - [x] useTitle 
+- [x] useClick
 - [ ] usePageLeave 
-- [ ] useClick
 - [ ] useFadeIn 
 - [ ] useFullscreen
 - [ ] userHover
