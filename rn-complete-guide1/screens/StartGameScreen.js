@@ -9,7 +9,8 @@ import {
     Keyboard,
     Alert,
     Dimensions,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    ScrollView
 } from 'react-native';
 import Card from "../components/Card";
 import Colors from "../constants/colors";
@@ -18,7 +19,6 @@ import NumberContainer from "../components/NumberContainer";
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
 import MainButton from "../components/MainButton";
-import {ScrollView} from "react-native-web";
 
 
 const StartGameScreens = props => {
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     inputContainer: {
-        width: 80,
+        width: '80%',
         maxWidth: '95%',
         minWidth: 300,
         alignItems: 'center'

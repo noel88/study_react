@@ -70,29 +70,36 @@ const GameScreen = props => {
         setPastGuesses(curPastGuesses => [nextNumber.toString(), ...curPastGuesses]);
     };
 
-    return (
-        <View style={styles.screen}>
-            <Text style={DefaultStyles.title}>Opponent's Guess</Text>
-            <NumberContainer>{currentGuess}</NumberContainer>
-            <Card style={styles.buttonContainer}>
-                <MainButton onPress={nextGuessHandler.bind(this, 'lower')}><Ionicons name="md-remove" size={24} color="white"/></MainButton>
-                <MainButton onPress={nextGuessHandler.bind(this, 'greater')}><Ionicons name="md-add" size={24} color="white"/></MainButton>
-            </Card>
-            <View style={styles.listContainer}>
-                {/*<ScrollView contentContainerStyle={styles.list}>*/}
-                {/*    {pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))}*/}
-                {/*</ScrollView>*/}
-                <FlatList
-                    keyExtractor={(item) => item}
-                    data={pastGuesses}
-                    renderItem={renderListItem.bind(this, pastGuesses.length)}
-                    contentContainerStyle={styles.list}
-                />
-            </View>
-        </View>
-    )
+    let listContainerStyle = styles.listContainer;
 
-};
+    if (Dimensions.get('window').height < 350) {
+        listContainerStyle = styles.listContainerBig;
+    }
+
+    // if (Dimensions.get('window').height < 600) {
+        return (
+            <View style={styles.screen}>
+                <Text style={DefaultStyles.title}>Opponent's Guess</Text>
+                <NumberContainer>{currentGuess}</NumberContainer>
+                <Card style={styles.buttonContainer}>
+                    <MainButton onPress={nextGuessHandler.bind(this, 'lower')}><Ionicons name="md-remove" size={24} color="white"/></MainButton>
+                    <MainButton onPress={nextGuessHandler.bind(this, 'greater')}><Ionicons name="md-add" size={24} color="white"/></MainButton>
+                </Card>
+                <View style={listContainerStyle}>
+                    {/*<ScrollView contentContainerStyle={styles.list}>*/}
+                    {/*    {pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))}*/}
+                    {/*</ScrollView>*/}
+                    <FlatList
+                        keyExtractor={(item) => item}
+                        data={pastGuesses}
+                        renderItem={renderListItem.bind(this, pastGuesses.length)}
+                        contentContainerStyle={styles.list}
+                    />
+                </View>
+            </View>
+        )
+    }
+// };
 
 const styles = StyleSheet.create({
     screen: {
@@ -103,7 +110,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: Dimensions.get('window').height > 600 ? 30 : 5,
+        marginTop: Dimensions.get('window').height > 600 ? 20 : 5,
         width: 400,
         maxWidth: '90%'
     },
@@ -117,14 +124,24 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         width: '100%'
     },
+    controls: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '80%'
+    },
     list: {
         flexGrow: 1,
         // alignItems: 'center',
         justifyContent: 'flex-end'
     },
     listContainer: {
-        width: Dimensions.get('window').width > 350 ? '60%' : '80%',
+        width: '60%',
         flex: 1
+    },
+    listContainerBig: {
+        flex: 1,
+        width: '80%'
     }
 });
 

@@ -5,7 +5,8 @@ import {
     StyleSheet,
     Button,
     Image,
-    Dimensions
+    Dimensions,
+    ScrollView
 } from 'react-native';
 
 import BodyText from "../components/BodyText";
@@ -15,30 +16,32 @@ import MainButton from "../components/MainButton";
 
 const GameOverScreen = props => {
     return (
-        <View style={styles.screen}>
-            <TitleText>The Game is over!</TitleText>
-            <View style={styles.imageContainer}>
-                <Image
-                    // source={require('../assets/success.png')}
-                    source={{uri:'https://cdn.pixabay.com/photo/2014/11/30/14/11/kitty-551554_960_720.jpg'}}
-                    style={styles.image}
-                    resizeMode="cover"
-                />
-            </View>
-            <View style={styles.resultContainer}>
-                <BodyText style={styles.resultText}>
-                    Your phone needed{' '}
-                    <Text style={styles.highlight}>
-                        {props.roundsNumber}
-                    </Text>
-                    rounds to guess the number{' '}
-                    <Text style={styles.highlight}>
-                        {props.userNumber}
+        <ScrollView>
+            <View style={styles.screen}>
+                <TitleText>The Game is over!</TitleText>
+                <View style={styles.imageContainer}>
+                    <Image
+                        source={require('../assets/success.png')}
+                        // source={{uri:'https://cdn.pixabay.com/photo/2014/11/30/14/11/kitty-551554_960_720.jpg'}}
+                        style={styles.image}
+                        resizeMode="cover"
+                    />
+                </View>
+                <View style={styles.resultContainer}>
+                    <BodyText style={styles.resultText}>
+                        Your phone needed{' '}
+                        <Text style={styles.highlight}>
+                            {props.roundsNumber}
                         </Text>
-                    </BodyText>
+                        rounds to guess the number{' '}
+                        <Text style={styles.highlight}>
+                            {props.userNumber}
+                            </Text>
+                        </BodyText>
+                </View>
+                <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
             </View>
-            <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
-        </View>
+        </ScrollView>
     );
 };
 
