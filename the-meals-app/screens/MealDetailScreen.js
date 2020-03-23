@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{ useEffect }from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, Image } from 'react-native';
 import DefaultText from "../components/DefaultText";
 import {useSelector} from "react-redux";
@@ -14,10 +14,14 @@ const ListItem = props => {
 
 const MealDetailScreen = props => {
     const availableMeals = useSelector(state => state.meals.meals);
-
     const mealId = props.navigation.getParam('mealId');
-
     const selectedMeal = availableMeals.find(meal => meal.id === mealId);
+
+    useEffect(() => {
+        props.navigation.setParams({mealTitle: selectedMeal.title});
+    }, [selectedMeal]);
+
+
     return (
         <ScrollView>
             <Image source={{uri: selectedMeal.imageUrl}} style={styles.image}/>

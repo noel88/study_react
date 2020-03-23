@@ -40,12 +40,13 @@ const MealsNavigator = createStackNavigator({
         navigationOptions: navigationData => {
             return {
                 headerTitle: 'Meal Categories',
-                headerLeft:
+                headerLeft: () => (
                     <HeaderButtons HeaderButtonComponent={HeaderButton}>
                         <Item title="Menu" iconName='ios-menu' onPress={() => {
                             navigationData.navigation.toggleDrawer();
                         }}/>
                     </HeaderButtons>
+                )
             }
         }
     },
@@ -56,16 +57,19 @@ const MealsNavigator = createStackNavigator({
         screen: MealDetailScreen,
         navigationOptions: navigationData => {
             const mealId = navigationData.navigation.getParam('mealId');
-            const selectedMeal = MEALS.find(meal => meal.id === mealId);
+            const mealTitle = navigationData.navigation.getParam('mealTitle');
+            // const selectedMeal = MEALS.find(meal => meal.id === mealId);
             return {
-                headerTitle: selectedMeal.title,
-                headerRight: <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                    <Item
-                        title="Favorite"
-                        iconName="ios-star"
-                        onPress={() => {}}
-                    />
-                </HeaderButtons>
+                headerTitle: mealTitle,
+                headerRight: () => (
+                    <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item
+                            title="Favorite"
+                            iconName="ios-star"
+                            onPress={() => {}}
+                        />
+                    </HeaderButtons>
+                )
             }
         },
     }
@@ -80,12 +84,13 @@ const FavNavigator = createStackNavigator({
         navigationOptions: navigationData => {
             return {
                 headerTitle: 'Your Favorite!',
-                headerLeft:
+                headerLeft: () => (
                     <HeaderButtons HeaderButtonComponent={HeaderButton}>
                         <Item title="Menu" iconName='ios-menu' onPress={() => {
                             navigationData.navigation.toggleDrawer();
                         }}/>
-                    </HeaderButtons>,
+                    </HeaderButtons>
+                ),
                 tabBarLabel: Platform.OS ==='android' ? <Text style={{ fontFamily: 'open-sans-bold'}}>Favorite</Text> : "Favorite"
             }
         }
@@ -142,7 +147,7 @@ const FilterNavigator = createStackNavigator({
         navigationOptions: navigationData => {
             return {
                 headerTitle: 'Filter Meal!',
-                headerLeft:(
+                headerLeft: () => (
                     <HeaderButtons HeaderButtonComponent={HeaderButton}>
                         <Item
                             title="Menu"
@@ -152,8 +157,8 @@ const FilterNavigator = createStackNavigator({
                             }}
                         />
                     </HeaderButtons>
-                    ),
-                headerRight: (
+                ),
+                headerRight: () => (
                     <HeaderButtons HeaderButtonComponent={HeaderButton}>
                         <Item
                             title="Save"
