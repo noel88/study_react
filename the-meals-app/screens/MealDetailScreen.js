@@ -4,6 +4,7 @@ import {MEALS} from "../data/dummy-data";
 
 
 
+
 const MealDetailScreen = props => {
     const mealId = props.navigation.getParam('mealId');
 
