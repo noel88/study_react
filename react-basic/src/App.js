@@ -2,13 +2,24 @@ import React from 'react';
 import './App.css';
 import Person from './Person/person';
 
-function App() {
+const App = () => {
+  this.state = {
+    persons: [
+        {name: 'max', age: '28'},
+        {name: 'Tony', age: '22'},
+        {name: 'manu', age: '27'}
+    ]
+  };
+
   return (
     <div className="App">
       <h1>Hello, React app</h1>
-      <Person name="jenny" age="20"/>
-        <Person name="manu" age="28">My Hobbies: Racing</Person>
-      <Person name="tony" age="27"/>
+        <button>Switch Name</button>
+      <Person name={this.state.persons[0].name}  age={this.state.persons[0].age}/>
+        <Person name={this.state.persons[1].name}  age={this.state.persons[1].age}>>My Hobbies: Racing</Person>
+      <Person name={this.state.persons[2].name}  age={this.state.persons[2].age}/>
+
+
     </div>
   );
 }
