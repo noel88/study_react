@@ -24,6 +24,12 @@ const defaultStackNavOption = {
     headerStyle: {
         backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
     },
+    headerTitleStyle: {
+        fontFamily: 'open-sans-bold'
+    },
+    headerBackStyle: {
+        fontFamily: 'open-sans'
+    },
     headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
     headerTitle: 'A Screen'
 };
@@ -79,7 +85,8 @@ const FavNavigator = createStackNavigator({
                         <Item title="Menu" iconName='ios-menu' onPress={() => {
                             navigationData.navigation.toggleDrawer();
                         }}/>
-                    </HeaderButtons>
+                    </HeaderButtons>,
+                tabBarLabel: Platform.OS ==='android' ? <Text style={{ fontFamily: 'open-sans-bold'}}>Favorite</Text> : "Favorite"
             }
         }
     },
@@ -105,7 +112,8 @@ const tabScreenConfig = {
             tabBarIcon: (tabInfo) => {
                 return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />
             },
-            tabBarColor: Colors.accentColor
+            tabBarColor: Colors.accentColor,
+            tabBarLabel: Platform.OS ==='android' ? <Text style={{ fontFamily: 'open-sans-bold'}}>Meals</Text> : "Meals"
         }
     }
 };
@@ -121,7 +129,10 @@ const MealFavTabNavigator = Platform.OS === 'android' ?
     })
     : createBottomTabNavigator(tabScreenConfig, {
     tabBarOptions: {
-        activeTintColor: Colors.accentColor
+        activeTintColor: Colors.accentColor,
+        labelStyle: {
+            fontFamily: 'open-sans'
+        }
     }
 });
 
