@@ -18,6 +18,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 
+const defaultStackNavOption = {
+    headerStyle: {
+        backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+    },
+    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+    headerTitle: 'A Screen'
+};
+
 const MealsNavigator = createStackNavigator({
     Categories: {
         screen: CategoriesScreen
@@ -44,13 +52,19 @@ const MealsNavigator = createStackNavigator({
     }
 }, {
     // initialRouteName: 'Categories',
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
-        },
-        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-        headerTitle: 'A Screen'
-    }
+    defaultNavigationOptions: defaultStackNavOption
+});
+
+const FavNavigator = createStackNavigator({
+    Favorites: {
+        screen: FavoritesScreen,
+        navigationOptions: {
+            headerTitle: 'Your Favorite!'
+        }
+    },
+    MealDetail: MealDetailScreen
+},{
+    defaultNavigationOptions: defaultStackNavOption
 });
 
 const tabScreenConfig = {
@@ -64,7 +78,7 @@ const tabScreenConfig = {
         }
     },
     Favorites: {
-        screen: FavoritesScreen,
+        screen: FavNavigator,
         navigationOptions: {
             // tabBarLabel: 'Favorites!',
             tabBarIcon: (tabInfo) => {
