@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, Image } from 'react-native';
-import {MEALS} from "../data/dummy-data";
 import DefaultText from "../components/DefaultText";
+import {useSelector} from "react-redux";
 
 const ListItem = props => {
     return (
@@ -9,13 +9,15 @@ const ListItem = props => {
             <DefaultText>{props.children}</DefaultText>
         </View>
     )
-}
+};
 
 
 const MealDetailScreen = props => {
+    const availableMeals = useSelector(state => state.meals.meals);
+
     const mealId = props.navigation.getParam('mealId');
 
-    const selectedMeal = MEALS.find(meal => meal.id === mealId);
+    const selectedMeal = availableMeals.find(meal => meal.id === mealId);
     return (
         <ScrollView>
             <Image source={{uri: selectedMeal.imageUrl}} style={styles.image}/>

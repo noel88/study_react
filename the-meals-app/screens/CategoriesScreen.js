@@ -1,14 +1,9 @@
 import React from 'react';
 import {
     StyleSheet,
-    Text,
-    View,
-    FlatList,
-    TouchableOpacity,
-    Platform
+    FlatList
 } from 'react-native';
 import {CATEGORIES, MEALS} from "../data/dummy-data";
-import Colors from "../constants/Colors";
 import CategoryGirdTile from "../components/CategoryGridTile";
 
 
