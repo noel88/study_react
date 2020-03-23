@@ -142,16 +142,31 @@ const FilterNavigator = createStackNavigator({
         navigationOptions: navigationData => {
             return {
                 headerTitle: 'Filter Meal!',
-                headerLeft:
+                headerLeft:(
                     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                        <Item title="Menu" iconName='ios-menu' onPress={() => {
-                            navigationData.navigation.toggleDrawer();
-                        }}/>
+                        <Item
+                            title="Menu"
+                            iconName='ios-menu'
+                            onPress={() => {
+                                navigationData.navigation.toggleDrawer();
+                            }}
+                        />
                     </HeaderButtons>
+                    ),
+                headerRight: (
+                    <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item
+                            title="Save"
+                            conName='ios-save'
+                            onPress={navigationData.navigation.getParam('save')}/>
+                    </HeaderButtons>
+                )
             }
         }
     }
-}, { defaultNavigationOptions: defaultStackNavOption});
+},
+{ defaultNavigationOptions: defaultStackNavOption}
+);
 
 const MainNavigator = createDrawerNavigator({
     MealFavs: {
