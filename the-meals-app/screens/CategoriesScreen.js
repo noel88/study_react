@@ -12,7 +12,6 @@ import Colors from "../constants/Colors";
 import CategoryGirdTile from "../components/CategoryGridTile";
 
 
-
 const CategoriesScreen = props => {
     const renderGridItem = (itemData) => {
         return (
@@ -38,10 +37,6 @@ const CategoriesScreen = props => {
             numColumns={2}
         />
     )
-};
-
-CategoriesScreen.navigationOptions = {
-    headerTitle: 'Meal Categories',
 };
 
 const styles = StyleSheet.create({
