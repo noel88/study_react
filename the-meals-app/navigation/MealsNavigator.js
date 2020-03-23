@@ -5,6 +5,7 @@ import CategoryMealScreen from "../screens/CategoryMealScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import {Platform} from "react-native";
 import Colors from "../constants/Colors";
+import {MEALS} from "../data/dummy-data";
 
 
 
@@ -15,7 +16,16 @@ const MealsNavigator = createStackNavigator({
     CategoryMeals: {
         screen: CategoryMealScreen
     },
-    MealDetail: MealDetailScreen,
+    MealDetail: {
+        screen: MealDetailScreen,
+        navigationOptions: navigationData => {
+            const mealId = navigationData.navigation.getParam('mealId');
+            const selectedMeal = MEALS.find(meal => meal.id === mealId);
+            return {
+                headerTitle: selectedMeal.title
+            }
+        },
+    }
 }, {
     // initialRouteName: 'Categories',
     defaultNavigationOptions: {
