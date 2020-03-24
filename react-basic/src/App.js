@@ -11,7 +11,7 @@ const App = props => {
             {name: 'manu', age : 22}
         ],
         otherState: 'some other value',
-        showPersons: true
+        showPersons: false
     });
 
     const switchNameHandler = (newName) => {
@@ -36,7 +36,11 @@ const App = props => {
 
     const togglePersonsHandler = () => {
         const doesShow = personsSates.showPersons;
-        setPersonsSates({showPersons: !doesShow});
+        setPersonsSates({ persons: [
+                {name: 'max', age : 25},
+                {name: 'mini', age : 20},
+                {name: 'manu', age : 22}
+            ],showPersons: !doesShow });
 
     };
 
@@ -48,6 +52,30 @@ const App = props => {
         cursor: 'pointer'
     };
 
+    let persons = null;
+
+    if (personsSates.showPersons) {
+        persons = (
+            <div>
+                <Person
+                    name={personsSates.persons[0].name}
+                    age={personsSates.persons[0].age}
+                    changed={nameChangeHandler}
+                />
+                <Person
+                    name={personsSates.persons[1].name}
+                    age={personsSates.persons[1].age}
+                    click={() => switchNameHandler('new')}
+                >My Hobbies: Racing
+                </Person>
+                <Person
+                    name={personsSates.persons[2].name}
+                    age={personsSates.persons[2].age}
+                />
+            </div>
+        );
+    }
+
     return (
         <div className="App">
             <h1>Hello, React app</h1>
@@ -57,26 +85,7 @@ const App = props => {
             >Switch Name
             </button>
             {/*<button onClick={this.switchNameHandler.bind(this, 'new')}>Switch Name</button>*/}
-
-            { personsSates.showPersons === true ?
-                <div>
-                    <Person
-                        name={personsSates.persons[0].name}
-                        age={personsSates.persons[0].age}
-                        changed={nameChangeHandler}
-                    />
-                    <Person
-                        name={personsSates.persons[1].name}
-                        age={personsSates.persons[1].age}
-                        click={() => switchNameHandler('new')}
-                    >My Hobbies: Racing
-                    </Person>
-                    <Person
-                        name={personsSates.persons[2].name}
-                        age={personsSates.persons[2].age}
-                    />
-                </div> : null
-            }
+            {persons}
         </div>
     );
 };
