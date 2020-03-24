@@ -1,39 +1,39 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/person';
 
-class App extends Component{
-  state = {
-    persons: [
-        {name: 'max', age: '28'},
-        {name: 'Tony', age: '22'},
-        {name: 'manu', age: '27'}
-    ],
-      otherState: 'some other value'
-  };
+const App = props => {
 
-  switchNameHandler = () => {
-    console.log('was clicked!');
-    this.setState({ persons: [
-            {name: 'xxxx', age: '28'},
-            {name: 'sss', age: '22'},
-            {name: 'ssds', age: '27'}
-        ]})
-  };
+    const [ personsSates, setPersonsSates ] = useState({
+        persons: [
+            {name: 'max', age : 25},
+            {name: 'mini', age : 20},
+            {name: 'manu', age : 22}
+        ],
+        otherState: 'some other value'
+    });
 
-    render() {
-        return (
-            <div className="App">
-                <h1>Hello, React app</h1>
-                <button onClick={this.switchNameHandler}>Switch Name</button>
-                <Person name={this.state.persons[0].name}  age={this.state.persons[0].age}/>
-                <Person name={this.state.persons[1].name}  age={this.state.persons[1].age}>My Hobbies: Racing</Person>
-                <Person name={this.state.persons[2].name}  age={this.state.persons[2].age}/>
+    const switchNameHandler = () => {
+        setPersonsSates({
+            persons: [
+                {name: '1', age : 25},
+                {name: '2', age : 20},
+                {name: '3', age : 22}
+            ]
+        });
+    };
+
+    return (
+        <div className="App">
+            <h1>Hello, React app</h1>
+            <button onClick={switchNameHandler}>Switch Name</button>
+            <Person name={personsSates.persons[0].name} age={personsSates.persons[0].age}/>
+            <Person name={personsSates.persons[1].name} age={personsSates.persons[1].age}>My Hobbies: Racing</Person>
+            <Person name={personsSates.persons[2].name} age={personsSates.persons[2].age}/>
 
 
-            </div>
-        );
-    }
+        </div>
+    );
 };
 
 export default App;
