@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
+import TabNavigation from "./navigation/TabNavigation";
 
 export default class App extends Component {
   state = {
@@ -24,9 +25,7 @@ export default class App extends Component {
     const { loaded } = this.state;
     if (loaded) {
       return (
-          <View style={styles.container}>
-            <Text>Open up App.js to start working on your app!</Text>
-          </View>
+          <TabNavigation/>
       );
     } else {
       return (
