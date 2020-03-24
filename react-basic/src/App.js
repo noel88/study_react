@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import Person from './Person/person';
+import Person from './Person/Person';
 
 const App = props => {
 
@@ -13,10 +13,10 @@ const App = props => {
         otherState: 'some other value'
     });
 
-    const switchNameHandler = () => {
+    const switchNameHandler = (newName) => {
         setPersonsSates({
             persons: [
-                {name: '1', age : 25},
+                {name: newName, age : 25},
                 {name: '2', age : 20},
                 {name: '3', age : 22}
             ]
@@ -26,10 +26,23 @@ const App = props => {
     return (
         <div className="App">
             <h1>Hello, React app</h1>
-            <button onClick={switchNameHandler}>Switch Name</button>
-            <Person name={personsSates.persons[0].name} age={personsSates.persons[0].age}/>
-            <Person name={personsSates.persons[1].name} age={personsSates.persons[1].age}>My Hobbies: Racing</Person>
-            <Person name={personsSates.persons[2].name} age={personsSates.persons[2].age}/>
+            <button onClick={() => switchNameHandler('new')}>Switch Name</button>
+            {/*<button onClick={this.switchNameHandler.bind(this, 'new')}>Switch Name</button>*/}
+
+            <Person
+                name={personsSates.persons[0].name}
+                age={personsSates.persons[0].age}
+            />
+            <Person
+                name={personsSates.persons[1].name}
+                age={personsSates.persons[1].age}
+                click={() => switchNameHandler('new')}
+            >My Hobbies: Racing
+            </Person>
+            <Person
+                name={personsSates.persons[2].name}
+                age={personsSates.persons[2].age}
+            />
 
 
         </div>
