@@ -23,6 +23,16 @@ const App = props => {
         });
     };
 
+    const nameChangeHandler = (event) => {
+        setPersonsSates({
+            persons: [
+                {name: event.target.value, age : 25},
+                {name: '2', age : 20},
+                {name: '3', age : 22}
+            ]
+        });
+    };
+
     return (
         <div className="App">
             <h1>Hello, React app</h1>
@@ -32,6 +42,7 @@ const App = props => {
             <Person
                 name={personsSates.persons[0].name}
                 age={personsSates.persons[0].age}
+                changed={nameChangeHandler}
             />
             <Person
                 name={personsSates.persons[1].name}
