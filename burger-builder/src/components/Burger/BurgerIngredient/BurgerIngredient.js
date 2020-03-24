@@ -1,5 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import styled from "styled-components";
+import PropTypes from 'prop-types';
+import BurgerBuilder from "../../../containers/BurgerBuilder/BurgerBuilder";
 
 const BreadBottom =styled.div`
     height: 13%;
@@ -109,39 +111,44 @@ const Bacon = styled.div`
 `;
 
 
+class burgerIngredient extends Component {
 
+    render() {
+        let ingredient = null;
 
-
-const burgerIngredient = props => {
-    let ingredient = null;
-
-    switch (props.type) {
-        case ('bread-bottom'):
-            ingredient = <BreadBottom></BreadBottom>;
-            break;
-        case ('bread-top'):
-            ingredient =
-                <BreadTop>
-                    <Seeds1></Seeds1>
-                    <Seeds2></Seeds2>
-                </BreadTop>;
-            break;
-        case ('meat'):
-            ingredient = <Meat></Meat>;
-            break;
-        case ('Cheese'):
-            ingredient = <Cheese></Cheese>;
-            break;
-        case ('bacon'):
-            ingredient = <Bacon></Bacon>;
-            break;
-        case ('salad'):
-            ingredient = <Salad></Salad>;
-            break;
-        default:
-            ingredient = null;
+        switch (this.props.type) {
+            case ('bread-bottom'):
+                ingredient = <BreadBottom></BreadBottom>;
+                break;
+            case ('bread-top'):
+                ingredient =
+                    <BreadTop>
+                        <Seeds1></Seeds1>
+                        <Seeds2></Seeds2>
+                    </BreadTop>;
+                break;
+            case ('meat'):
+                ingredient = <Meat></Meat>;
+                break;
+            case ('Cheese'):
+                ingredient = <Cheese></Cheese>;
+                break;
+            case ('bacon'):
+                ingredient = <Bacon></Bacon>;
+                break;
+            case ('salad'):
+                ingredient = <Salad></Salad>;
+                break;
+            default:
+                ingredient = null;
+        }
+        return ingredient;
     }
-    return ingredient;
+};
+
+
+BurgerBuilder.prototypes = {
+    type: PropTypes.string.isRequired
 };
 
 export default burgerIngredient;
