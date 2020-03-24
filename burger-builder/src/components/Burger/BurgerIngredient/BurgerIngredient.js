@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
 import PropTypes from 'prop-types';
-import BurgerBuilder from "../../../containers/BurgerBuilder/BurgerBuilder";
 
 const BreadBottom =styled.div`
     height: 13%;
@@ -111,7 +110,7 @@ const Bacon = styled.div`
 `;
 
 
-class burgerIngredient extends Component {
+class BurgerIngredient extends Component {
 
     render() {
         let ingredient = null;
@@ -130,7 +129,7 @@ class burgerIngredient extends Component {
             case ('meat'):
                 ingredient = <Meat></Meat>;
                 break;
-            case ('Cheese'):
+            case ('cheese'):
                 ingredient = <Cheese></Cheese>;
                 break;
             case ('bacon'):
@@ -144,11 +143,10 @@ class burgerIngredient extends Component {
         }
         return ingredient;
     }
-};
+}
 
-
-BurgerBuilder.prototypes = {
+BurgerIngredient.propTypes = {
     type: PropTypes.string.isRequired
 };
 
-export default burgerIngredient;
+export default BurgerIngredient;
