@@ -1,5 +1,11 @@
 import React from "react";
 import Aux from "../../hocks/AuxHoc";
+import styled from 'styled-components'
+
+const Content = styled.main`
+  margin-top: 16px;
+`;
+
 
 const layout = (props) => {
     return (
@@ -7,11 +13,15 @@ const layout = (props) => {
             <div>
                 Toolbar, SideDrawer, Backdrop
             </div>
-            <main>
+            <Content>
                 {props.children}
-            </main>
+            </Content>
         </Aux>
     )
 };
+
+
+
+
 
 export default layout;
