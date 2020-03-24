@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import BuildControl from './BuildControl/BuildControl';
 
 const BuildControls = styled.div`
   width: 100%;
@@ -12,13 +13,20 @@ const BuildControls = styled.div`
   padding: 10px 0;
 `;
 
-
+const controls = [
+    {label: 'Salad', type: 'salad'},
+    {label: 'Bacon', type: 'bacon'},
+    {label: 'Cheese', type: 'cheese'},
+    {label: 'Meat', type: 'meat'}
+];
 
 const buildControls = (props) => {
 
     return (
         <BuildControls>
-
+            {controls.map(ctrl => (
+                <BuildControl key={ctrl.label} label={ctrl.label} />
+            ))}
         </BuildControls>
     )
 };
