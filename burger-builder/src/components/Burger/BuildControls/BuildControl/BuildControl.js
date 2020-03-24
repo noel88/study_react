@@ -72,7 +72,7 @@ const buildControl = (props) => {
         <BuildControl>
             <Label>{props.label}</Label>
             <Less>Less</Less>
-            <More>More</More>
+            <More onClick={props.added}>More</More>
         </BuildControl>
     )
 };
