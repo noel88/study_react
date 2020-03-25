@@ -5,7 +5,7 @@ import {
     Platform
 } from 'react-native';
 import {createAppContainer} from 'react-navigation';
-import MoviesScreen from "../screen/Movies";
+import MoviesScreen from "../screen/Movie/MoviesContainer";
 import TVScreen from "../screen/TV";
 import SearchScreen from "../screen/Search";
 import { BG_COLOR } from "../constants/Colors";
