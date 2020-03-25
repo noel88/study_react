@@ -59,6 +59,7 @@ const MealsNavigator = createStackNavigator({
             // const mealId = navigationData.navigation.getParam('mealId');
             const mealTitle = navigationData.navigation.getParam('mealTitle');
             const toggleFavorite = navigationData.navigation.getParam('toggleFav');
+            const isFavorite = navigationData.navigation.getParam('isFav');
             // const selectedMeal = MEALS.find(meal => meal.id === mealId);
             return {
                 headerTitle: mealTitle,
@@ -66,7 +67,7 @@ const MealsNavigator = createStackNavigator({
                     <HeaderButtons HeaderButtonComponent={HeaderButton}>
                         <Item
                             title="Favorite"
-                            iconName="ios-star"
+                            iconName={isFavorite ? 'ios-star' : 'ios-star-outline'}
                             onPress={toggleFavorite}
                         />
                     </HeaderButtons>
