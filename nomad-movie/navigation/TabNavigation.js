@@ -7,7 +7,7 @@ import {
 import {createAppContainer} from 'react-navigation';
 import MoviesScreen from "../screen/Movie/MoviesContainer";
 import TVScreen from "../screen/TV";
-import SearchScreen from "../screen/Search";
+import SearchScreen from "../screen/Saerch/SearchPresenter";
 import { BG_COLOR } from "../constants/Colors";
 import TabBarIcon from "../components/TabBarIcon";
 import {createStack} from "./config";
