@@ -21,6 +21,7 @@ const TVPresenter = ({loading, popular, airingThisWeek, airingToday}) => (
                         {
                             airingToday.filter(tv => tv.poster_path !== null)
                                 .map(tv => <MovieItem
+                                    isMovie={false}
                                     key={tv.id}
                                     posterPhoto={tv.poster_path}
                                     voteAvg={tv.vote_average}
@@ -36,6 +37,7 @@ const TVPresenter = ({loading, popular, airingThisWeek, airingToday}) => (
                         {
                             airingThisWeek.filter(tv => tv.poster_path !== null)
                                 .map(tv => <MovieItem
+                                    isMovie={false}
                                     key={tv.id}
                                     posterPhoto={tv.poster_path}
                                     voteAvg={tv.vote_average}
@@ -51,6 +53,7 @@ const TVPresenter = ({loading, popular, airingThisWeek, airingToday}) => (
                         {
                             popular.filter(tv => tv.poster_path !== null)
                                 .map(tv => <MovieItem
+                                    isMovie={false}
                                     key={tv.id}
                                     posterPhoto={tv.poster_path}
                                     voteAvg={tv.vote_average}
