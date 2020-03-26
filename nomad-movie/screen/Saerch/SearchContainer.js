@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import SearchPresenter from "./SearchPresenter";
 
 export default class SearchContainer extends Component {
@@ -15,6 +16,14 @@ export default class SearchContainer extends Component {
         })
     };
 
+    onSubmitEditing = () => {
+        const { searchTerm } = this.state;
+        if(searchTerm !== "") {
+            
+
+        }
+    };
+
     render() {
         const { loading, movieResults, tvResults, searchTerm } = this.state;
         return (
@@ -24,6 +33,7 @@ export default class SearchContainer extends Component {
                 tvResults={tvResults}
                 searchTerm={searchTerm}
                 handleSearchUpdate={this.handleSearchUpdate}
+                onSubmitEditing={this.onSubmitEditing}
             />
         )
     }
