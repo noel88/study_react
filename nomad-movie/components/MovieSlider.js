@@ -16,7 +16,7 @@ const Text = styled.Text``;
 
 
 const MovieSlider = ({movies}) => (
-    <Swiper showPagination={false} autoplay={true} style={{height: SWIPER_HEIGHT}}>
+    <Swiper showPagination={false} autoplay={true} style={{height: SWIPER_HEIGHT}} autopalyTimeout={3}>
         {movies ? movies.filter(movie => movie.backdrop_path !== null).map(movie => (
             <View key={movie.id}>
                 <MovieSlide id={movie.id} posterPhoto={movie.poster_path} backgroundPhoto={movie.backdrop_path} title={movie.title} voteAvg={movie.vote_average} overview={movie.overview}/>
