@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Alert } from 'react-native';
 import SearchPresenter from "./SearchPresenter";
+import {moviesApi, tvApi} from "../../api";
 
 export default class SearchContainer extends Component {
     state = {
@@ -10,17 +10,33 @@ export default class SearchContainer extends Component {
         searchTerm: ""
     };
 
-    handleSearchUpdate = text => {
+    handleSearchUpdate = (text) => {
         this.setState({
             searchTerm: text
         })
     };
 
-    onSubmitEditing = () => {
-        const { searchTerm } = this.state;
-        if(searchTerm !== "") {
-            
-
+    onSubmitEditing = async () => {
+        const {searchTerm} = this.state;
+        if (searchTerm !== "") {
+            let loading, movieResults, tvResults, error;
+            this.setState({loading: true})
+        }
+        try {
+            ({
+                data: {results: movieResults}
+            } = await moviesApi.search(searchTerm));
+            ({
+                data: {results: tvResults}
+            } = await tvApi.search(searchTerm));
+        } catch {
+            error = "Cant results!"
+        } finally {
+            this.setState({
+                loading: false,
+                movieResults,
+                tvResults
+            })
         }
     };
 
