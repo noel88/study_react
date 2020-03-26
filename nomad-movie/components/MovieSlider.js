@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from "styled-components";
-import Swiper from 'react-native-viewpager';
+import Swiper from 'react-native-swiper';
 import Layout from "../constants/Layout";
 import MovieSlide from "./MovieSlide";
 

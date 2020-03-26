@@ -2,7 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 
-const MovieSlide = () => null;
+const Container = styled.View``;
+const BgImage = styled.Image``;
+
+const MovieSlide = ({
+    posterPhoto,
+    backgroundPhoto,
+    title,
+    voteAvg,
+    overview
+}) => (
+    <Container>
+        <BgImage bgPhoto={}/>
+    </Container>
+);
 
 MovieSlide.propTypes = {
     id: PropTypes.number.isRequired,
