@@ -11,26 +11,26 @@ export default class TVContainer extends Component {
     };
 
     async componentDidMount() {
-        let popular, topRated, airingToday, error;
+        let popular, airingThisWeek, airingToday, error;
         try {
             ({
                 data: {results: popular}
             } = await tvApi.popular());
             ({
-                data: {results: topRated}
-            } = await tvApi.topRated());
+                data: {results: airingThisWeek}
+            } = await tvApi.airingThisWeek());
             ({
                 data: {results: airingToday}
             } = await tvApi.airingToday());
         } catch {
             error = "Can't get TV";
         } finally {
-            this.setState({loading: false, error, popular, topRated, airingToday})
+            this.setState({loading: false, error, popular, airingThisWeek, airingToday})
         }
     }
 
     render() {
-        const { loading, popular, topRated, airingToday } = this.state;
-        return <TVPresenter loading={loading} popular={popular} topRated={topRated} airingToday={airingToday} />
+        const { loading, popular, airingThisWeek, airingToday } = this.state;
+        return <TVPresenter loading={loading} popular={popular} airingThisWeek={airingThisWeek} airingToday={airingToday} />
     }
 }

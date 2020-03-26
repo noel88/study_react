@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Loader from "../../components/Loader";
 import styled from "styled-components";
 import MovieSlider from "../../components/MovieSlider";
-import {BG_COLOR} from "../../constants/Colors";
+import {BG_COLOR, TINT_COLOR} from "../../constants/Colors";
 import Section from "../../components/Section";
 import MovieItem from "../../components/MovieItem";
 
@@ -23,6 +23,19 @@ const MoviesPresenter = ({loading, upcoming, popular, nowPlaying}) => (
                            upcoming.filter(movie => movie.poster_path !== null)
                                .map(movie =>
                                    <MovieItem
+                                       key={movie.id}
+                                       posterPhoto={movie.poster_path}
+                                       voteAvg={movie.vote_average}
+                                       id={movie.id}
+                                       title={movie.title}
+                                   />)
+                       }</Section>: null}
+                   {popular ? <Section title="Popular Movies" horizontal={false}>
+                       {
+                           popular.filter(movie => movie.poster_path !== null)
+                               .map(movie =>
+                                   <MovieItem
+                                       horizontal={true}
                                        key={movie.id}
                                        posterPhoto={movie.poster_path}
                                        voteAvg={movie.vote_average}

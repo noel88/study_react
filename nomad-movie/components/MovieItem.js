@@ -14,12 +14,15 @@ const Title = styled.Text`
   font-size: 12px;
 `;
 
-const MovieItem = ({id, posterPhoto, title, voteAvg}) => (
+const MovieItem = ({id, posterPhoto, title, voteAvg, horizontal = false}) => (
+    horizontal ?
+    null :
     <Container>
         <MoviePoster path={posterPhoto} />
         <Title>{title.length > 15 ? `${title.substring(0,12)}...` : title}</Title>
         <MovieRating votes={voteAvg} inSlide={true}/>
     </Container>
+
 );
 
 MovieItem.propTypes = {
