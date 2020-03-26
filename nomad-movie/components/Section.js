@@ -12,16 +12,17 @@ const Title = styled.Text`
   color: ${TINT_COLOR};
   font-weight: 600;
   padding-left: 20px;
-  margin-bottom: 10px;
-  font-size: 12px;
+  margin-bottom: 15px;
 `;
 
-const ScrollView = styled.ScrollView``;
+const ScrollView = styled.ScrollView`
+  padding-left: 20px;
+`;
 
-const Section = ({title, movies}) => (
+const Section = ({title, children}) => (
     <Container>
         <Title>{title}</Title>
-        <ScrollView horizontal>{movies.filter(movie => movie.poster_path !== null).map(movie => <MovieItem key={movie.id} posterPhoto={movie.poster_path} voteAvg={movie.vote_average} id={movie.id} title={movie.title}/>)}</ScrollView>
+        <ScrollView horizontal>{children}</ScrollView>
     </Container>
 );
 
