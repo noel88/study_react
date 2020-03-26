@@ -3,11 +3,28 @@ import SearchPresenter from "./SearchPresenter";
 
 export default class SearchContainer extends Component {
     state = {
-        loading: true
+        loading: false,
+        movieResults: null,
+        tvResults: null,
+        searchTerm: ""
+    };
+
+    handleSearchUpdate = text => {
+        this.setState({
+            searchTerm: text
+        })
     };
 
     render() {
-        const { loading } = this.state;
-        return <SearchPresenter loading={loading} />
+        const { loading, movieResults, tvResults, searchTerm } = this.state;
+        return (
+            <SearchPresenter
+                loading={loading}
+                movieResults={movieResults}
+                tvResults={tvResults}
+                searchTerm={searchTerm}
+                handleSearchUpdate={this.handleSearchUpdate}
+            />
+        )
     }
 }

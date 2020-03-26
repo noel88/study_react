@@ -1,4 +1,28 @@
 import React from "react";
-import { Text } from "react-native";
+import PropTypes from 'prop-types';
+import styled from "styled-components";
+import {BG_COLOR} from "../../constants/Colors";
 
-export default () => <Text>Search</Text>;
+const Container = styled.View`
+  flex: 1;
+  background-color: ${BG_COLOR};
+`;
+
+const Input = styled.TextInput``;
+
+const SearchPresenter = ({loading, movieResults, tvResults, searchTerm, handleSearchUpdate}) => (
+    <Container>
+        <Input value={searchTerm} autofocus onChangeText={handleSearchUpdate}/>
+    </Container>
+);
+
+SearchPresenter.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    movieResults: PropTypes.array,
+    tvResults: PropTypes.array,
+    searchTerm: PropTypes.string,
+    handleSearchUpdate: PropTypes.func.isRequired
+};
+
+
+export default SearchPresenter;
