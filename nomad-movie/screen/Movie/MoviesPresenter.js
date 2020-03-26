@@ -41,6 +41,7 @@ const MoviesPresenter = ({loading, upcoming, popular, nowPlaying}) => (
                                        voteAvg={movie.vote_average}
                                        id={movie.id}
                                        title={movie.title}
+                                       overview={movie.overview}
                                    />)
                        }</Section>: null}
                </Container>
