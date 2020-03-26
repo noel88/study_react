@@ -1,9 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from "styled-components";
+import makePhotoUrl from "../utils/makePhotoUrl";
+import Layout from "../constants/Layout";
+import MoviePoster from "./MoviePoster";
 
-const Container = styled.View``;
-const BgImage = styled.Image``;
+const Container = styled.View`
+  flex: 1;
+  position: relative;
+`;
+
+const Content = styled.View`
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+ 
+`;
+
+const BgImage = styled.Image`
+  width: ${Layout.width};
+  height: ${Layout.height / 3};
+  opacity: 0.5;
+  position: absolute;
+`;
 
 const MovieSlide = ({
     posterPhoto,
@@ -13,7 +34,10 @@ const MovieSlide = ({
     overview
 }) => (
     <Container>
-        <BgImage bgPhoto={}/>
+        <BgImage source={{uri: makePhotoUrl(backgroundPhoto)}} />
+        <Content>
+            <MoviePoster path={posterPhoto} />
+        </Content>
     </Container>
 );
 
