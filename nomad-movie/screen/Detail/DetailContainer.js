@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { Text } from "react-native";
+import PropTypes from 'prop-types';
 import DetailPresenter from "./DetailPresenter";
 
 export default class extends Component {
@@ -21,6 +22,15 @@ export default class extends Component {
             overview
         }
     }
+
+    static propTypes = {
+        id: PropTypes.number.isRequired,
+        posterPhoto: PropTypes.string.isRequired,
+        backgroundPhoto: PropTypes.string,
+        title: PropTypes.string.isRequired,
+        voteAvg: PropTypes.number,
+        overview: PropTypes.string
+    };
 
     render() {
         const {

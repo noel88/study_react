@@ -38,6 +38,7 @@ const MovieItem = ({id, posterPhoto, title, voteAvg, horizontal = false, overvie
            isMovie,
            id,
            posterPhoto,
+           backgroundPhoto: null,
            title,
            voteAvg,
            overview
