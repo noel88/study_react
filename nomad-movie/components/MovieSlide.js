@@ -86,7 +86,12 @@ const MovieSlide = ({
                             routeName: "Detail",
                             params: {
                                 isMovie: true,
-                                id
+                                id,
+                                posterPhoto,
+                                backgroundPhoto,
+                                title,
+                                voteAvg,
+                                overview
                             }
                         })
                     }}>More details</BtnText>

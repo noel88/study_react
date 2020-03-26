@@ -36,7 +36,11 @@ const MovieItem = ({id, posterPhoto, title, voteAvg, horizontal = false, overvie
        routeName: 'Detail',
        params: {
            isMovie,
-           id
+           id,
+           posterPhoto,
+           title,
+           voteAvg,
+           overview
        }
    })}>
        { horizontal ?
