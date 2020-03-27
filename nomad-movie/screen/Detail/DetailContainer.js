@@ -33,9 +33,22 @@ export default class extends Component {
             backgroundPhoto,
             title,
             voteAvg,
-            overview
+            overview,
+            loading: true
         }
     }
+
+    async componentDidMount() {
+        let error, genres, overview;
+        try {
+
+        } catch {
+
+        } finally {
+            this.setState({loading: false})
+        }
+    }
+
 
     render() {
         const {
@@ -45,7 +58,8 @@ export default class extends Component {
             backgroundPhoto,
             title,
             voteAvg,
-            overview
+            overview,
+            loading
         } = this.state;
         return (
             <DetailPresenter
@@ -56,6 +70,7 @@ export default class extends Component {
                 title={title}
                 voteAvg={voteAvg}
                 overview={overview}
+                loading={loading}
              />
         )
     }
