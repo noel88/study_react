@@ -45,11 +45,11 @@ export default class extends Component {
         try {
             if (isMovie) {
                 ({
-                    genres, overview, status, release_date: date, backdrop_path: backgroundPhoto
+                    data : { genres, overview, status, release_date: date, backdrop_path: backgroundPhoto }
                 } = await moviesApi.movieDetail(id))
             } else {
                 ({
-                    genres, overview, status, first_air_date: date, backdrop_path: backgroundPhoto
+                    data : { genres, overview, status, first_air_date: date, backdrop_path: backgroundPhoto }
                 } = await tvApi.showDetail(id))
             }
         } catch {
@@ -79,7 +79,10 @@ export default class extends Component {
             title,
             voteAvg,
             overview,
-            loading
+            loading,
+            date,
+            status,
+            genres
         } = this.state;
         return (
             <DetailPresenter
@@ -91,6 +94,9 @@ export default class extends Component {
                 voteAvg={voteAvg}
                 overview={overview}
                 loading={loading}
+                status={status}
+                date={date}
+                genres={genres}
              />
         )
     }

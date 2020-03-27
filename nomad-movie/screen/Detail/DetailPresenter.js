@@ -83,7 +83,10 @@ const DetailPresenter = ({   id,
                              title,
                              voteAvg,
                              overview,
-                             loading
+                             loading,
+                             status,
+                             date,
+                             genres
                          }) => (
                                  <Container>
                                      <Header>
@@ -103,6 +106,7 @@ const DetailPresenter = ({   id,
                                                  <Column>
                                                      <Title>{title}</Title>
                                                      <MovieRating votes={voteAvg} inSlide={true}/>
+                                                    {genres ? <Genres>{genres.map((genre,index) => index === genre.length-1 ? genre.name : `${genre.name} / ` )}</Genres> : null}
                                                  </Column>
                                              </Content>
                                          </LinearGradient>
@@ -110,10 +114,25 @@ const DetailPresenter = ({   id,
                                      <MainContent>
                                          {overview ?
                                              <>
-                                                 <ContentTitle>Over View </ContentTitle>
+                                                 <ContentTitle>Over View</ContentTitle>
                                                 <ContentValue>{overview}</ContentValue>
                                              </>
-                                             : null}
+                                             : null
+                                         }
+                                         {overview ?
+                                             <>
+                                                 <ContentTitle>Status</ContentTitle>
+                                                 <ContentValue>{status}</ContentValue>
+                                             </>
+                                             : null
+                                         }
+                                         {overview ?
+                                             <>
+                                                 <ContentTitle>{isMovie ? "Release Date" : "First Episode"}</ContentTitle>
+                                                 <ContentValue>{date}</ContentValue>
+                                             </>
+                                             : null
+                                         }
                                      </MainContent>
                                      {loading ? <Loader /> : null}
                                  </Container>
@@ -128,7 +147,10 @@ DetailPresenter.propTypes = {
     voteAvg: PropTypes.number,
     overview: PropTypes.string,
     isMovie: PropTypes.bool.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    status: PropTypes.string,
+    date: PropTypes.string,
+    genres: PropTypes.string
 };
 
 export default DetailPresenter;
