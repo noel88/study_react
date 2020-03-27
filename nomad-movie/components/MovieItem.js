@@ -31,8 +31,8 @@ const OverView = styled.Text`
   margin-bottom: 10px;
 `;
 
-const MovieItem = ({id, posterPhoto, title, voteAvg, horizontal = false, overview, isMovie, navigation}) => (
-   <TouchableWithoutFeedback onPress={() =>navigation.navigate({
+const MovieItem = ({id, posterPhoto, title, voteAvg, horizontal = false, overview, isMovie = true, navigation}) => (
+   <TouchableWithoutFeedback onPress={() => navigation.navigate({
        routeName: 'Detail',
        params: {
            isMovie,

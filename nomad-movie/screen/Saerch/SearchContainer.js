@@ -1,43 +1,48 @@
-import React, { Component } from 'react';
+import React from "react";
 import SearchPresenter from "./SearchPresenter";
 import {moviesApi, tvApi} from "../../api";
 
-export default class SearchContainer extends Component {
+export default class extends React.Component {
     state = {
         loading: false,
         movieResults: null,
         tvResults: null,
-        searchTerm: ""
+        searchTerm: "",
+        error: null
     };
 
-    handleSearchUpdate = (text) => {
+    handleSearchUpdate = text => {
         this.setState({
             searchTerm: text
-        })
+        });
     };
 
     onSubmitEditing = async () => {
-        const {searchTerm} = this.state;
+        const { searchTerm } = this.state;
         if (searchTerm !== "") {
-            let loading, movieResults, tvResults, error;
-            this.setState({loading: true})
-        }
-        try {
-            ({
-                data: {results: movieResults}
-            } = await moviesApi.search(searchTerm));
-            ({
-                data: {results: tvResults}
-            } = await tvApi.search(searchTerm));
-        } catch {
-            error = "Cant results!"
-        } finally {
+            let movieResults, tvResults, error;
             this.setState({
-                loading: false,
-                movieResults,
-                tvResults
-            })
+                loading: true
+            });
+            try {
+                ({
+                    data: { results: movieResults }
+                } = await moviesApi.search(searchTerm));
+                ({
+                    data: { results: tvResults }
+                } = await tvApi.search(searchTerm));
+            } catch {
+                error = "Can't search";
+            } finally {
+                this.setState({
+                    loading: false,
+                    movieResults,
+                    tvResults,
+                    error
+                });
+            }
         }
+        return;
     };
 
     render() {
@@ -48,9 +53,9 @@ export default class SearchContainer extends Component {
                 movieResults={movieResults}
                 tvResults={tvResults}
                 searchTerm={searchTerm}
-                handleSearchUpdate={this.handleSearchUpdate}
                 onSubmitEditing={this.onSubmitEditing}
+                handleSearchUpdate={this.handleSearchUpdate}
             />
-        )
+        );
     }
 }

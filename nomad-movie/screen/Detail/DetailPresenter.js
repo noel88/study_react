@@ -5,6 +5,7 @@ import {BG_COLOR, TINT_COLOR} from "../../constants/Colors";
 import Layout from "../../constants/Layout";
 import makePhotoUrl from "../../utils/makePhotoUrl";
 import MoviePoster from "../../components/MoviePoster";
+import MovieRating from "../../components/MovieRating";
 
 
 const Container = styled.ScrollView`
@@ -45,6 +46,7 @@ const Title = styled.Text`
 `;
 
 const DetailPresenter = ({   id,
+                             isMovie,
                              posterPhoto,
                              backgroundPhoto,
                              title,
@@ -70,7 +72,8 @@ DetailPresenter.propTypes = {
     backgroundPhoto: PropTypes.string,
     title: PropTypes.string.isRequired,
     voteAvg: PropTypes.number,
-    overview: PropTypes.string
+    overview: PropTypes.string,
+    isMovie: PropTypes.bool.isRequired
 };
 
 export default DetailPresenter;

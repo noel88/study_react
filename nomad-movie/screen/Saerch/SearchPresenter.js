@@ -14,13 +14,13 @@ const Container = styled.View`
 
 const InputContainer = styled.View`
   align-items: center;
-  margin-bottom: 20px;
+  margin-vertical: 20px;
 `;
 
 const Input = styled.TextInput`
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(255, 255, 255, 1);
   width: ${Layout.width / 1.6};
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 10px;
   text-align: center;
 `;
@@ -29,72 +29,79 @@ const SearchResults = styled.ScrollView`
   margin-top: 20px;
 `;
 
-const SearchPresenter = ({loading, movieResults, tvResults, searchTerm, handleSearchUpdate, onSubmitEditing}) => (
+const SearchPresenter = ({
+                             loading,
+                             tvResults,
+                             searchTerm,
+                             movieResults,
+                             handleSearchUpdate,
+                             onSubmitEditing
+                         }) => (
     <Container>
         <InputContainer>
             <Input
                 onChangeText={handleSearchUpdate}
                 value={searchTerm}
                 returnKeyType="search"
+                placeholder="Search movies and tv"
                 placeholderTextColor={GREY_COLOR}
-                placeholder="Search Movies and TV"
                 onSubmitEditing={onSubmitEditing}
             />
         </InputContainer>
         <SearchResults>
-            { loading ? <Loader /> :
+            {loading ? (
+                <Loader />
+            ) : (
                 <>
-                    { movieResults ? (
+                    {movieResults ? (
                         movieResults.length > 0 ? (
-                        <Section title="Movie Results">
-                            {
-                                movieResults.filter(movie => movie.poster_path !== null)
-                                    .map(movie =>
+                            <Section title="Movie Results">
+                                {movieResults
+                                    .filter(movie => movie.poster_path !== null)
+                                    .map(movie => (
                                         <MovieItem
                                             key={movie.id}
-                                            posterPhoto={movie.poster_path}
-                                            voteAvg={movie.vote_average}
                                             id={movie.id}
+                                            posterPhoto={movie.poster_path}
                                             title={movie.title}
                                             overview={movie.overview}
+                                            voteAvg={movie.vote_average}
                                         />
-                                    )
-                            }
-                        </Section>
+                                    ))}
+                            </Section>
                         ) : null
                     ) : null}
-                    { movieResults ? (
+                    {tvResults ? (
                         tvResults.length > 0 ? (
-                        <Section title="TV Results">
-                            {
-                                tvResults.filter(tv => tv.poster_path !== null)
-                                    .map(tv =>
+                            <Section title="TV Results">
+                                {tvResults
+                                    .filter(tv => tv.poster_path !== null)
+                                    .map(tv => (
                                         <MovieItem
+                                            isMovie={false}
                                             key={tv.id}
-                                            posterPhoto={tv.poster_path}
-                                            voteAvg={tv.vote_average}
                                             id={tv.id}
+                                            posterPhoto={tv.poster_path}
                                             title={tv.name}
+                                            voteAvg={tv.vote_average}
                                         />
-                                    )
-                            }
-                        </Section>
+                                    ))}
+                            </Section>
                         ) : null
                     ) : null}
                 </>
-            }
+            )}
         </SearchResults>
     </Container>
 );
 
 SearchPresenter.propTypes = {
     loading: PropTypes.bool.isRequired,
-    movieResults: PropTypes.array,
     tvResults: PropTypes.array,
+    movieResults: PropTypes.array,
     searchTerm: PropTypes.string,
     handleSearchUpdate: PropTypes.func.isRequired,
     onSubmitEditing: PropTypes.func.isRequired
 };
-
 
 export default SearchPresenter;

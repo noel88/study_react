@@ -12,9 +12,23 @@ export default class extends Component {
 
     constructor(props) {
         super(props);
-        const { navigation: { state : { param: id, posterPhoto, backgroundPhoto, title, voteAvg, overview }}}  = props;
+        const { navigation: {
+                    state : {
+                        params: {
+                            id,
+                            isMovie,
+                            posterPhoto,
+                            backgroundPhoto,
+                            title,
+                            voteAvg,
+                            overview
+                        }
+                    }
+                }
+            }  = props;
         this.state = {
             id,
+            isMovie,
             posterPhoto,
             backgroundPhoto,
             title,
@@ -23,17 +37,9 @@ export default class extends Component {
         }
     }
 
-    static propTypes = {
-        id: PropTypes.number.isRequired,
-        posterPhoto: PropTypes.string.isRequired,
-        backgroundPhoto: PropTypes.string,
-        title: PropTypes.string.isRequired,
-        voteAvg: PropTypes.number,
-        overview: PropTypes.string
-    };
-
     render() {
         const {
+            isMovie,
             id,
             posterPhoto,
             backgroundPhoto,
@@ -44,12 +50,13 @@ export default class extends Component {
         return (
             <DetailPresenter
                 id={id}
+                isMovie={isMovie}
                 backgroundPhoto={backgroundPhoto}
                 posterPhoto={posterPhoto}
                 title={title}
                 voteAvg={voteAvg}
                 overview={overview}
-            />
+             />
         )
     }
 }
