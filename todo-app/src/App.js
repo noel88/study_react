@@ -1,9 +1,16 @@
 import React from 'react';
+import TodoTemplate from "./components/TodoTemplate";
+import TodoInsert from "./components/TodoInsert";
+import TodoList from "./components/TodoList";
 
 const App = () => {
   return (
       <div>
-        Todo App을 만들자!
+          <TodoTemplate>
+              <TodoInsert/>
+              <TodoList/>
+          </TodoTemplate>
+
       </div>
   )
 };
