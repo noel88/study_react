@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { Text } from "react-native";
 import PropTypes from 'prop-types';
 import DetailPresenter from "./DetailPresenter";
+import {moviesApi, tvApi} from "../../api";
 
 export default class extends Component {
     static navigationOptions = ({navigation}) => {
@@ -39,13 +40,32 @@ export default class extends Component {
     }
 
     async componentDidMount() {
-        let error, genres, overview;
+        const { isMovie, id } = this.state;
+        let error, genres, overview, status, date, backgroundPhoto;
         try {
-
+            if (isMovie) {
+                ({
+                    genres, overview, status, release_date: date, backdrop_path: backgroundPhoto
+                } = await moviesApi.movieDetail(id))
+            } else {
+                ({
+                    genres, overview, status, first_air_date: date, backdrop_path: backgroundPhoto
+                } = await tvApi.showDetail(id))
+            }
         } catch {
-
+            error = "Can't the result!"
         } finally {
-            this.setState({loading: false})
+            this.setState(prev => {
+                return {
+                    ...prev,
+                    loading: false,
+                    genres,
+                    overview,
+                    status,
+                    date,
+                    backgroundPhoto
+                }
+            })
         }
     }
 
