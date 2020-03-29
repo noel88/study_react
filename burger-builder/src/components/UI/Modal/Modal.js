@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import AuxHoc from "../../../hocks/AuxHoc";
+import Backdrop from "../Backdrop/Backdrop";
 
 const Model = styled.div`
     position: fixed;
@@ -26,11 +28,15 @@ const Model = styled.div`
 
 const modal = props => {
     return (
-        <Model style={{transform: props.show ? 'translateY(0)' : "translateY(-100vh)",
-        opacity: props.show ? '1' : '0'
-        }}>
-            {props.children}
-        </Model>
+        <AuxHoc>
+            <Backdrop clicked={props.modalClosed}>
+                <Model style={{transform: props.show ? 'translateY(0)' : "translateY(-100vh)",
+                opacity: props.show ? '1' : '0'
+                }}>
+                    {props.children}
+                </Model>
+            </Backdrop>
+        </AuxHoc>
     )
 };
 
