@@ -42,7 +42,7 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postsRoutes);
 
 
-const port = process.env.PORT || 7000;
+const port = 4000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
