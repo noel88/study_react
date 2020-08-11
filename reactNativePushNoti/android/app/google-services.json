@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "363589136083",
+    "firebase_url": "https://test-noti-457b4.firebaseio.com",
+    "project_id": "test-noti-457b4",
+    "storage_bucket": "test-noti-457b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363589136083:android:a6ddd1bc8903fc02ff2e26",
+        "android_client_info": {
+          "package_name": "com.reactnativepushnoti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363589136083-g3ene47o9p4r2gfgd7j46456cjf6ujmr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmFBsNV8an7Uwnvd-FcgyC11k1_vwDZzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363589136083-g3ene47o9p4r2gfgd7j46456cjf6ujmr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
