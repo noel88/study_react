@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RNLoginExample</string>
+    <string name="kakao_app_key">0429ae5990cea70c9a4623cb0728554e</string>
+</resources>
