@@ -15,23 +15,15 @@ const logCallback = (log, callback) => {
 
 const TOKEN_EMPTY = 'token has not fetched';
 const PROFILE_EMPTY = {
-  id: 'profile has not fetched',
+  nickname: 'profile has not fetched',
   email: 'profile has not fetched',
   profile_image_url: '',
 };
 
 export default function App() {
-  //   return (
-  //     <View>
-  //       <Text>Hello</Text>
-  //     </View>
-  //   );
-  // }
   const [loginLoading, setLoginLoading] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
-  const [profileLoading, setProfileLoading] = useState(false);
-  const [unlinkLoading, setUnlinkLoading] = useState(false);
-
+  const [isLogin, setIsLogin] = useState(false);
   const [token, setToken] = useState(TOKEN_EMPTY);
   const [profile, setProfile] = useState(PROFILE_EMPTY);
 
@@ -41,10 +33,20 @@ export default function App() {
     KakaoLogins.login()
       .then((result) => {
         setToken(result.accessToken);
+        setIsLogin(true);
         logCallback(
           `Login Finished:${JSON.stringify(result)}`,
           setLoginLoading(false),
         );
+
+        KakaoLogins.getProfile()
+          .then((result) => {
+            setProfile(result);
+            logCallback(`Get Profile Finished:${JSON.stringify(result)}`);
+          })
+          .catch((err) => {
+            logCallback(`Get Profile Failed:${err.code} ${err.message}`);
+          });
       })
       .catch((err) => {
         if (err.code === 'E_CANCELLED_OPERATION') {
@@ -65,6 +67,7 @@ export default function App() {
       .then((result) => {
         setToken(TOKEN_EMPTY);
         setProfile(PROFILE_EMPTY);
+        setIsLogin(false);
         logCallback(`Logout Finished:${result}`, setLogoutLoading(false));
       })
       .catch((err) => {
@@ -75,85 +78,44 @@ export default function App() {
       });
   };
 
-  const getProfile = () => {
-    logCallback('Get Profile Start', setProfileLoading(true));
-
-    KakaoLogins.getProfile()
-      .then((result) => {
-        setProfile(result);
-        logCallback(
-          `Get Profile Finished:${JSON.stringify(result)}`,
-          setProfileLoading(false),
-        );
-      })
-      .catch((err) => {
-        logCallback(
-          `Get Profile Failed:${err.code} ${err.message}`,
-          setProfileLoading(false),
-        );
-      });
-  };
-
-  const unlinkKakao = () => {
-    logCallback('Unlink Start', setUnlinkLoading(true));
-
-    KakaoLogins.unlink()
-      .then((result) => {
-        setToken(TOKEN_EMPTY);
-        setProfile(PROFILE_EMPTY);
-        logCallback(`Unlink Finished:${result}`, setUnlinkLoading(false));
-      })
-      .catch((err) => {
-        logCallback(
-          `Unlink Failed:${err.code} ${err.message}`,
-          setUnlinkLoading(false),
-        );
-      });
-  };
-
-  const {id, email, profile_image_url: photo} = profile;
+  const {nickname, email, profile_image_url: photo} = profile;
 
   return (
     <View style={styles.container}>
-      <View style={styles.profile}>
-        <Image style={styles.profilePhoto} source={{uri: photo}} />
-        <Text>{`id : ${id}`}</Text>
-        <Text>{`email : ${email}`}</Text>
-      </View>
+      {!isLogin && (
+        <View style={styles.profile}>
+          <Text>로그인을 해야 이용하실수 있는 서비스입니다.</Text>
+        </View>
+      )}
+      {isLogin && (
+        <View style={styles.profile}>
+          <Image style={styles.profilePhoto} source={{uri: photo}} />
+          <Text>{`${nickname} 님 환영합니다!`}</Text>
+          {/*<Text>{`email : ${email}`}</Text>*/}
+        </View>
+      )}
       <View style={styles.content}>
-        <Text style={styles.token}>{token}</Text>
-        <NativeButton
-          isLoading={loginLoading}
-          onPress={kakaoLogin}
-          activeOpacity={0.5}
-          style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}>
-          LOGIN
-        </NativeButton>
-        <NativeButton
-          isLoading={logoutLoading}
-          onPress={kakaoLogout}
-          activeOpacity={0.5}
-          style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}>
-          Logout
-        </NativeButton>
-        <NativeButton
-          isLoading={profileLoading}
-          onPress={getProfile}
-          activeOpacity={0.5}
-          style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}>
-          getProfile
-        </NativeButton>
-        <NativeButton
-          isLoading={unlinkLoading}
-          onPress={unlinkKakao}
-          activeOpacity={0.5}
-          style={styles.btnKakaoLogin}
-          textStyle={styles.txtKakaoLogin}>
-          unlink
-        </NativeButton>
+        <Text>{loginLoading}</Text>
+        {!isLogin && (
+          <NativeButton
+            isLoading={loginLoading}
+            onPress={kakaoLogin}
+            activeOpacity={0.5}
+            style={styles.btnKakaoLogin}
+            textStyle={styles.txtKakaoLogin}>
+            KaKao로 LOGIN 하기
+          </NativeButton>
+        )}
+        {isLogin && (
+          <NativeButton
+            isLoading={logoutLoading}
+            onPress={kakaoLogout}
+            activeOpacity={0.5}
+            style={styles.btnKakaoLogin}
+            textStyle={styles.txtKakaoLogin}>
+            Logout
+          </NativeButton>
+        )}
       </View>
     </View>
   );
@@ -211,4 +173,4 @@ const styles = StyleSheet.create({
   },
 });
 
-YellowBox.ignoreWarnings(['source.uri']);
+// YellowBox.ignoreWarnings(['source.uri']);
