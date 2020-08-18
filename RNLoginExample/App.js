@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, Image, YellowBox} from 'react-native';
 
 import KakaoLogins from '@react-native-seoul/kakao-login';
 import NativeButton from 'apsl-react-native-button';
+import {LoginButton, AccessToken} from 'react-native-fbsdk';
 
 if (!KakaoLogins) {
   console.error('Module is Not Linked');
@@ -94,6 +95,20 @@ export default function App() {
           {/*<Text>{`email : ${email}`}</Text>*/}
         </View>
       )}
+      <LoginButton
+        onLoginFinished={(error, result) => {
+          if (error) {
+            console.log('login has error: ' + result.error);
+          } else if (result.isCancelled) {
+            console.log('login is cancelled.');
+          } else {
+            AccessToken.getCurrentAccessToken().then((data) => {
+              console.log(data.accessToken.toString());
+            });
+          }
+        }}
+        onLogoutFinished={() => console.log('logout.')}
+      />
       <View style={styles.content}>
         <Text>{loginLoading}</Text>
         {!isLogin && (

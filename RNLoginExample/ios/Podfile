@@ -8,6 +8,8 @@ target 'RNLoginExample' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
   target 'RNLoginExampleTests' do
     inherit! :complete
     # Pods for testing
