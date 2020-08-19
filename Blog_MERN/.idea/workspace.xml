@@ -18,19 +18,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/client" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
+  </component>
   <component name="ProjectId" id="1a6GFELLI68z03WyLrLFeSvd49m" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/img" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -42,7 +45,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -70,6 +73,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -93,41 +97,21 @@
       <workItem from="1586048524992" duration="590000" />
       <workItem from="1586049357337" duration="316000" />
       <workItem from="1586049694825" duration="2628000" />
-      <workItem from="1586052550116" duration="1442000" />
+      <workItem from="1586052550116" duration="1562000" />
+      <workItem from="1593946410160" duration="107000" />
+      <workItem from="1593946544270" duration="6000" />
+      <workItem from="1596976018303" duration="79000" />
+      <workItem from="1596976181281" duration="90000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586048961157">
+    <state x="341" y="164" key="SettingsEditor" timestamp="1596976266087">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1586048961157" />
-    <state width="1659" height="295" key="GridCell.Tab.0.bottom" timestamp="1586049048295">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1659" height="295" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1586049048295" />
-    <state width="1659" height="295" key="GridCell.Tab.0.center" timestamp="1586049048294">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1659" height="295" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1586049048294" />
-    <state width="1659" height="295" key="GridCell.Tab.0.left" timestamp="1586049048293">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1659" height="295" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1586049048293" />
-    <state width="1659" height="295" key="GridCell.Tab.0.right" timestamp="1586049048294">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1659" height="295" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1586049048294" />
-    <state x="349" y="164" key="SettingsEditor" timestamp="1586049684495">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="349" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1586049684495" />
-    <state x="496" y="266" width="687" height="518" key="find.popup" timestamp="1586052178344">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="496" y="266" width="687" height="518" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1586052178344" />
+    <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1596976266087" />
   </component>
 </project>

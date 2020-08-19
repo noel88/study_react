@@ -79,7 +79,7 @@ class SongComponent extends Component {
                         size={30}
                         style={{marginTop: 10}}
                       />
-                      <Icon name="dot-vertical" color="gray" size={30} />
+                      <Icon name="dots-vertical" color="gray" size={30} />
                     </View>
                   </View>
                 </TouchableWithoutFeedback>
