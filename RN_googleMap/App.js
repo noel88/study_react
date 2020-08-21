@@ -33,7 +33,6 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 
 // const getMoviesFromApi = () => {
-//   let key = 'AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY';
 //   let location = `${this.state.latitude},${this.state.longitude}`;
 //   let radius = '500';
 //   let type = 'food';
@@ -93,7 +92,7 @@ class App extends Component {
   // }
 
   getkey() {
-    return 'AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY';
+    return '###';
   }
 
   getData() {
@@ -103,8 +102,8 @@ class App extends Component {
       )}&display=5&start=1&sort=random`,
       {
         headers: {
-          'X-Naver-Client-Id': 'Do8ASBMnczvPUUEkNzxG',
-          'X-Naver-Client-Secret': 'Wibqs5cojH',
+          'X-Naver-Client-Id': '###',
+          'X-Naver-Client-Secret': '###',
         },
       },
     )
@@ -114,13 +113,12 @@ class App extends Component {
   }
 
   getPlacePhoto(place_id) {
-    let key = 'AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY';
+    let key = '###';
     let photoreference = '';
     // if (photo1 == place_id) {
     //   photoreference = photo1.photo_reference;
     //   return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photoreference=${photoreference}&key=${key}`;
     // }
-    //return 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photoreference=CmRaAAAAGStaVBWM0taiTN_7zv53FjV5CfFqKJYG7wdnX--nX5rizGGLi5RSt4A851KL9Hhw9n7rQiMq59Okhn31IsPYDfHw6tIifXt1ctx5TG_Mzox3Bwf5_8ihQnN4iTqmro2tEhAV9Gxf6CahOekphkAUUcJ9GhSKRp2KpyL6SksAvEHAk-HmUOjybA&key=AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY';
     this.state.photo
       .filter((value) => value.id === place_id)
       .map((value) => {
@@ -137,11 +135,9 @@ class App extends Component {
     //   console.log('photo_reference', this.state.photo.photo_reference);
     // }
     // photoreference = this.state.photo.photo_reference;
-    //return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photoreference=${photoreference}&key=${key}`;
-    // 'https://maps.googleapis.com/maps/api/place/details/json?photoreference=CmRaAAAAGStaVBWM0taiTN_7zv53FjV5CfFqKJYG7wdnX--nX5rizGGLi5RSt4A851KL9Hhw9n7rQiMq59Okhn31IsPYDfHw6tIifXt1ctx5TG_Mzox3Bwf5_8ihQnN4iTqmro2tEhAV9Gxf6CahOekphkAUUcJ9GhSKRp2KpyL6SksAvEHAk-HmUOjybA&key=AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY',
   }
   getPlaceDetails(placeId) {
-    let key = 'AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY';
+    let key = '###';
 
     let test = new Array();
     fetch(
@@ -205,7 +201,7 @@ class App extends Component {
   }
 
   getRadiusPlace() {
-    let key = 'AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY';
+    let key = '###';
     let location = `${this.state.latitude},${this.state.longitude}`;
     // console.log(location);
     let radius = '500';
@@ -227,7 +223,7 @@ class App extends Component {
   }
 
   getRadiusCafePlace() {
-    let key = 'AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY';
+    let key = '###';
     let location = `${this.state.latitude},${this.state.longitude}`;
     // console.log(location);
     let radius = '500';
@@ -459,7 +455,6 @@ class App extends Component {
           {/*            style={styles.img}*/}
           {/*            source={{*/}
           {/*              uri:*/}
-          {/*                // 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photoreference=CmRaAAAAGStaVBWM0taiTN_7zv53FjV5CfFqKJYG7wdnX--nX5rizGGLi5RSt4A851KL9Hhw9n7rQiMq59Okhn31IsPYDfHw6tIifXt1ctx5TG_Mzox3Bwf5_8ihQnN4iTqmro2tEhAV9Gxf6CahOekphkAUUcJ9GhSKRp2KpyL6SksAvEHAk-HmUOjybA&key=AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY',*/}
           {/*                this.getPlacePhoto(item.id),*/}
           {/*            }}*/}
           {/*          />*/}
@@ -484,7 +479,6 @@ class App extends Component {
           {/*            style={styles.img}*/}
           {/*            source={{*/}
           {/*              uri:*/}
-          {/*                // 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photoreference=CmRaAAAAGStaVBWM0taiTN_7zv53FjV5CfFqKJYG7wdnX--nX5rizGGLi5RSt4A851KL9Hhw9n7rQiMq59Okhn31IsPYDfHw6tIifXt1ctx5TG_Mzox3Bwf5_8ihQnN4iTqmro2tEhAV9Gxf6CahOekphkAUUcJ9GhSKRp2KpyL6SksAvEHAk-HmUOjybA&key=AIzaSyAk1ee0v21XhJ6sD84Nencc4KYUiB0jVjY',*/}
           {/*                this.getPlacePhoto(item.place_id),*/}
           {/*            }}*/}
           {/*          />*/}
