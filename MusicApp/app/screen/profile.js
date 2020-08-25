@@ -1,5 +1,6 @@
 import React, {Component, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import ProfileComponent from '../components/profileComponent';
 
 const Profile = () => {
   // const [state, setState] = useState('');
