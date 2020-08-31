@@ -32,6 +32,7 @@ class Discover extends Component {
         <ScrollView>
           <Text style={[styles.title, {marginTop: 0}]}>Recently Searched</Text>
           <SongComponent navigation={this.props.navigation} />
+          <CatogComponent navigation={this.props.navigation} />
         </ScrollView>
       </View>
     );
