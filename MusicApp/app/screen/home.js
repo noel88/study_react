@@ -5,8 +5,6 @@ import CatogComponent from '../components/catogComponent';
 import SongComponent from '../components/songComponent';
 
 class Home extends Component {
-  // const [state, setState] = useState('');
-
   constructor(props) {
     super(props);
   }

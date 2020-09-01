@@ -30,6 +30,7 @@ import Icon2 from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Tabs from './app/config/router';
 import Player from './app/screen/player';
+import CategoriesDetails from './app/components/categoriesDetails';
 
 class App extends Component {
   constructor(props) {
@@ -40,11 +41,26 @@ class App extends Component {
   }
 
   render() {
+    const zoomIn = {
+      0: {
+        scale: 0,
+      },
+      0.5: {
+        scale: 0.5,
+      },
+      1: {
+        scale: 1,
+      },
+    };
     return (
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" backgroundColor="#fff" />
         <Text style={styles.title}> Music App </Text>
-        <Image source={require('./app/assets/logo.png')} style={styles.logo} />
+        <Animatable.Image
+          animation={zoomIn}
+          source={require('./app/assets/logo.png')}
+          style={styles.logo}
+        />
         <TouchableOpacity style={styles.btn} onPress={() => this.goToTabs()}>
           <Text style={styles.text}>Start Listening</Text>
         </TouchableOpacity>
@@ -110,6 +126,13 @@ const Stacks = () => {
       <Stack.Screen
         name="Player"
         component={Player}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={CategoriesDetails}
         options={{
           headerShown: false,
         }}

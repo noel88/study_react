@@ -8,9 +8,10 @@ class Player extends Component {
   }
 
   render() {
+    let item = this.props.route.params.item;
     return (
       <View style={styles.container}>
-        <PlayerComponent navigation={this.props.navigation} />
+        <PlayerComponent navigation={this.props.navigation} item={item} />
       </View>
     );
   }

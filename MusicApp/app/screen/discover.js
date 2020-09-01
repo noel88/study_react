@@ -14,8 +14,6 @@ import SongComponent from '../components/songComponent';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class Discover extends Component {
-  // const [state, setState] = useState('');
-
   constructor(props) {
     super(props);
   }

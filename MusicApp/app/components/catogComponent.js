@@ -18,6 +18,11 @@ class CatogComponent extends Component {
   constructor(props) {
     super(props);
   }
+
+  goToDetails = (item) => {
+    this.props.navigation.navigate('Details', {item: item});
+  };
+
   render() {
     let categories = [
       {
@@ -50,12 +55,12 @@ class CatogComponent extends Component {
           showsHorizontalScrollIndicator={false}
           renderItem={({item, index}) => {
             return (
-              <TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={() => this.goToDetails(item)}>
                 <Surface style={styles.surface}>
                   <ImageBackground
                     source={item.img}
                     style={styles.img}
-                    blurRadius={1}>
+                    blurRadius={3}>
                     <Icon name="music" color="#fff" size={22} />
                     <Text style={styles.name}>{item.name}</Text>
                   </ImageBackground>

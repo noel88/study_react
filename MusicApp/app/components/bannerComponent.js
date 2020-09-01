@@ -13,49 +13,61 @@ import Icon2 from 'react-native-vector-icons/Ionicons';
 
 const {width, height} = Dimensions.get('window');
 
-const BannerComponent = ({props}) => {
-  // const [state, setState] = useState('');
+class BannerComponent extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  let banners = [
-    {
-      title: 'Metal City',
-      subTitle: 'Dead April',
-      img: require('../assets/b1.jpg'),
-    },
-    {
-      title: 'Return To Forever',
-      subTitle: '',
-      img: require('../assets/b2.jpg'),
-    },
-    {
-      title: 'Your Love Remains',
-      subTitle: 'The Rock Music',
-      img: require('../assets/b3.jpg'),
-    },
-  ];
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={banners}
-        horizontal={true}
-        pagingEnabled={true}
-        showHorizontalScrollIndicator={false}
-        renderItem={({item, index}) => {
-          return (
-            <View style={styles.banner} key={index}>
-              <ImageBackground source={item.img} style={styles.bannerImage}>
-                <TouchableOpacity style={styles.btn}>
-                  <Icon name="play" size={18} color="#000" />
-                  <Text style={styles.text}>Play Now</Text>
-                </TouchableOpacity>
-              </ImageBackground>
-            </View>
-          );
-        }}
-      />
-    </View>
-  );
-};
+  playSong = (item) => {
+    this.props.navigation.navigate('Player', {item: item});
+  };
+
+  render() {
+    let banners = [
+      {
+        title: 'Metal City',
+        subTitle: 'Dead April',
+        img: require('../assets/b1.jpg'),
+      },
+      {
+        title: 'Return To Forever',
+        subTitle: '',
+        img: require('../assets/b2.jpg'),
+      },
+      {
+        title: 'Your Love Remains',
+        subTitle: 'The Rock Music',
+        img: require('../assets/b3.jpg'),
+      },
+    ];
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={banners}
+          horizontal={true}
+          pagingEnabled={true}
+          showHorizontalScrollIndicator={false}
+          renderItem={({item, index}) => {
+            return (
+              <View style={styles.banner} key={index}>
+                <ImageBackground source={item.img} style={styles.bannerImage}>
+                  <TouchableOpacity
+                    style={styles.btn}
+                    onPress={() => {
+                      this.playSong(item);
+                    }}>
+                    <Icon name="play" size={18} color="#000" />
+                    <Text style={styles.text}>Play Now</Text>
+                  </TouchableOpacity>
+                </ImageBackground>
+              </View>
+            );
+          }}
+        />
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
