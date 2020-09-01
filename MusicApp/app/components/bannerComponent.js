@@ -45,7 +45,6 @@ const BannerComponent = ({props}) => {
             <View style={styles.banner} key={index}>
               <ImageBackground source={item.img} style={styles.bannerImage}>
                 <TouchableOpacity style={styles.btn}>
-                  {/*<Icon2 name="ios-book" size={18} color="#000" />*/}
                   <Icon name="play" size={18} color="#000" />
                   <Text style={styles.text}>Play Now</Text>
                 </TouchableOpacity>

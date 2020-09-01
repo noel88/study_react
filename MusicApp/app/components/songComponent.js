@@ -22,6 +22,10 @@ class SongComponent extends Component {
     return <View style={{height: 10, backgroundColor: '#fff'}} />;
   };
 
+  playSong = (item) => {
+    this.props.navigation.navigate();
+  };
+
   render() {
     let song = [
       {
@@ -64,7 +68,9 @@ class SongComponent extends Component {
             showVerticalScrollIndicator={false}
             renderItem={({item, index}) => {
               return (
-                <TouchableWithoutFeedback style={styles.songContainer}>
+                <TouchableWithoutFeedback
+                  style={styles.songContainer}
+                  onPress={() => this.playSong()}>
                   <View style={{flexDirection: 'row'}}>
                     <Image source={item.img} style={styles.img} />
                     <View style={styles.dataContainer}>

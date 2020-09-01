@@ -29,6 +29,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Tabs from './app/config/router';
+import Player from './app/screen/player';
 
 class App extends Component {
   constructor(props) {
@@ -102,6 +103,13 @@ const Stacks = () => {
       <Stack.Screen
         name="Tabs"
         component={Tabs}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Player"
+        component={Player}
         options={{
           headerShown: false,
         }}

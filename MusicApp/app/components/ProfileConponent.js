@@ -1,11 +1,34 @@
 import React, {Component, useState} from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import Surface from 'react-native-paper/src/components/Surface';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/Ionicons';
 
 class ProfileComponent extends Component {
   constructor(props) {
     super(props);
   }
+
+  renderOption = (icon, name, count) => {
+    return (
+      <View style={styles.options}>
+        <View style={styles.left}>
+          <Icon name={icon} size={30} color="#000" />
+          <Text style={styles.title}>{name}</Text>
+        </View>
+        <View style={styles.left}>
+          <Text style={styles.title}>{count}</Text>
+          <Icon2
+            name="ios-arrow-forward"
+            size={30}
+            color="gray"
+            style={{marginLeft: 20}}
+          />
+        </View>
+      </View>
+    );
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -19,8 +42,15 @@ class ProfileComponent extends Component {
           <View style={styles.dataContainer}>
             <Text style={styles.name}>AppDevBlg</Text>
             <Text style={styles.uname}>appdevblog_100100</Text>
+            <Text style={styles.uname}>10 Jan 2000</Text>
           </View>
         </View>
+        <View style={styles.divider} />
+        {this.renderOption('music', 'song', 20)}
+        {this.renderOption('playlist-music', 'Playlist', 25)}
+        {this.renderOption('album', 'Albums', 10)}
+        {this.renderOption('download', 'Download', 10)}
+        <View style={styles.divider} />
       </View>
     );
   }
@@ -46,6 +76,9 @@ const styles = StyleSheet.create({
     width: 80,
     borderRadius: 75,
   },
+  dataContainer: {
+    paddingLeft: 10,
+  },
   name: {
     fontSize: 18,
     color: '#000',
@@ -53,6 +86,26 @@ const styles = StyleSheet.create({
   uname: {
     fontSize: 18,
     color: 'grey',
+  },
+  divider: {
+    height: 10,
+    backgroundColor: '#e5e5e5',
+  },
+  options: {
+    height: 55,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e5e5e',
+  },
+  title: {
+    fontSize: 20,
+    marginLeft: 15,
+  },
+  left: {
+    flexDirection: 'row',
   },
 });
 
