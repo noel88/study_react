@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Home extends Component {
   constructor(props) {
@@ -18,6 +19,16 @@ class Home extends Component {
   separator = () => {
     return <View style={{height: 10, backgroundColor: '#fff'}} />;
   };
+
+  async view() {
+    let value = await AsyncStorage.getItem('@memo');
+    console.log('value:', value);
+  }
+
+  remove(key) {
+    // let value = AsyncStorage.removeItem('@memo');
+    console.log('Delete TODO');
+  }
 
   render() {
     let data = [
@@ -48,10 +59,9 @@ class Home extends Component {
         <SwipeListView
           useFlatList={true}
           data={data}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={(rowData, rowMap) => (
-            <TouchableHighlight
-              onPress={() => console.log('You touched me')}
-              style={styles.rowFront}>
+            <TouchableHighlight style={styles.rowFront}>
               <View>
                 <Text style={styles.text}>{rowData.item.title}</Text>
                 <Text style={styles.subText}>{rowData.item.subTitle}</Text>
@@ -60,6 +70,7 @@ class Home extends Component {
           )}
           renderHiddenItem={(rowData, rowMap) => (
             <TouchableOpacity
+              onPress={() => this.remove(rowData.item.index)}
               style={[styles.backRightBtn, styles.backRightBtnLeft]}>
               <Text style={styles.backTextWhite}>Delete</Text>
             </TouchableOpacity>
@@ -71,6 +82,7 @@ class Home extends Component {
               rowMap[rowKey].closeRow();
             }, 2000);
           }}
+          onRowClose={() => console.log('close')}
         />
       </View>
     );

@@ -8,7 +8,7 @@ import {
   Platform,
   StatusBar,
   Button,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {
   actions,
@@ -16,6 +16,7 @@ import {
   RichEditor,
   RichToolbar,
 } from 'react-native-pell-rich-editor';
+import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const strikethrough = require('../assets/strikethrough.png');
@@ -27,15 +28,10 @@ class Memo extends Component {
     super(props);
   }
 
-  changeTxt = (value) => {
-    console.log('value: ', value);
-  };
-
   async save() {
-    // Get the data here and call the interface to save the data
     let html = await this.richText.current?.getContentHtml();
-    // console.log(html);
     console.log('saveData: ', html);
+    await AsyncStorage.setItem('@memo', html);
   }
 
   render() {
@@ -44,23 +40,25 @@ class Memo extends Component {
         <StatusBar barStyle="dark-content" />
         <View style={styles.iconContainer}>
           <Text style={styles.title}>Memo</Text>
-          <TouchableOpacity style={{marginRight: 15}} onPress={this.save}>
+          <TouchableWithoutFeedback
+            style={{marginRight: 15}}
+            onPress={() => this.save()}>
             <Icon color="gray" size={30} name="content-save-outline" />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         </View>
         <ScrollView style={styles.scroll} keyboardDismissMode={'none'}>
           <RichEditor
-            ref={(r) => (this.richText = r)}
-            initialContentHTML={
-              '<span style="color:gray;">하단의 <b>에디터</b>를 이용하여 오늘 하루의 <span style="color: olivedrab"> 메모</span>를 작성하세요.</span>'
+            ref={this.richText}
+            placeholder={
+              '하단의 에디터를 이용하여 오늘 하루 메모를 작성하세요😀'
             }
-            onChange={() => this.changeTxt()}
+            setContentHTML={() => this.save()}
           />
         </ScrollView>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <RichToolbar
-            getEditor={() => this.richText}
+            editor={this.richText}
             iconSize={40}
             actions={[
               ...defaultActions,
