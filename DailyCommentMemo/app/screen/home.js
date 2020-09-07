@@ -31,6 +31,7 @@ class Home extends Component {
   }
 
   render() {
+    //TODO: 목록 데이터 및 삭제 할 수 있게 설정해야함.
     let data = [
       {
         title: '2020-08-01',

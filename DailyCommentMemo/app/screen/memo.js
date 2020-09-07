@@ -28,6 +28,7 @@ class Memo extends Component {
     super(props);
   }
 
+  //TODO: Key 값과 함께 전달해야함.
   async save() {
     let html = await this.richText.current?.getContentHtml();
     console.log('saveData: ', html);
