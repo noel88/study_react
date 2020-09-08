@@ -11,55 +11,53 @@ import {
 import {SwipeListView} from 'react-native-swipe-list-view';
 import AsyncStorage from '@react-native-community/async-storage';
 
+let list = new Array();
+
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      app: [],
+    };
   }
 
   separator = () => {
     return <View style={{height: 10, backgroundColor: '#fff'}} />;
   };
 
-  async view() {
-    let value = await AsyncStorage.getItem('@memo');
-    console.log('value:', value);
+  view() {
+    let list = new Array();
+    AsyncStorage.getAllKeys((err, keys) => {
+      AsyncStorage.multiGet(keys, (err, stores) => {
+        stores.map((result, i, store) => {
+          let key = store[i][0];
+          let value = store[i][1];
+          list.push({title: key, subTitle: value});
+        });
+        this.setState({app: list});
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.view();
+    console.log(this.state.app);
   }
 
   remove(key) {
-    // let value = AsyncStorage.removeItem('@memo');
     console.log('Delete TODO');
+    AsyncStorage.removeItem(key);
+    setTimeout(() => this.view(), 2001);
+    alert('메모를 삭제합니다.');
   }
 
   render() {
-    //TODO: 목록 데이터 및 삭제 할 수 있게 설정해야함.
-    let data = [
-      {
-        title: '2020-08-01',
-        subTitle: 'Text Description',
-      },
-      {
-        title: '2020-08-02',
-        subTitle: 'Text Description',
-      },
-      {
-        title: '2020-08-03',
-        subTitle: 'Text Description',
-      },
-      {
-        title: '2020-08-04',
-        subTitle: 'Text Description',
-      },
-      {
-        title: '2020-08-05',
-        subTitle: 'Text Description',
-      },
-    ];
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Home</Text>
         <SwipeListView
           useFlatList={true}
-          data={data}
+          data={this.state.app}
           keyExtractor={(item, index) => index.toString()}
           renderItem={(rowData, rowMap) => (
             <TouchableHighlight style={styles.rowFront}>
@@ -71,7 +69,7 @@ class Home extends Component {
           )}
           renderHiddenItem={(rowData, rowMap) => (
             <TouchableOpacity
-              onPress={() => this.remove(rowData.item.index)}
+              onPress={() => this.remove(rowData.item.title)}
               style={[styles.backRightBtn, styles.backRightBtnLeft]}>
               <Text style={styles.backTextWhite}>Delete</Text>
             </TouchableOpacity>

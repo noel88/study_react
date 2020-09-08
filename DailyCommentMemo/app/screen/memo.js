@@ -28,11 +28,43 @@ class Memo extends Component {
     super(props);
   }
 
-  //TODO: Key 값과 함께 전달해야함.
+  getTimeStamp() {
+    let d = new Date();
+    let s =
+      this.leadingZeros(d.getFullYear(), 4) +
+      '-' +
+      this.leadingZeros(d.getMonth() + 1, 2) +
+      '-' +
+      this.leadingZeros(d.getDate(), 2);
+
+    return s;
+  }
+
+  leadingZeros(n, digits) {
+    let zero = '';
+    n = n.toString();
+
+    if (n.length < digits) {
+      for (let i = 0; i < digits - n.length; i++) {
+        zero += '0';
+      }
+    }
+    return zero + n;
+  }
+
   async save() {
     let html = await this.richText.current?.getContentHtml();
+    let key = this.getTimeStamp();
+    console.log(AsyncStorage.getItem(key));
+    if (await AsyncStorage.getItem(key)) {
+      alert(
+        '기존에 저장되어진 데이터가 있습니다. 오늘은 더이상 저장할수 없습니다.',
+      );
+      return false;
+    }
+    await AsyncStorage.setItem(key, html);
     console.log('saveData: ', html);
-    await AsyncStorage.setItem('@memo', html);
+    alert('Success');
   }
 
   render() {
