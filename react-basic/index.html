@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+<script type="text/babel">
+
+    function Btn({ text = "hello", fontSize, changeValue }) {
+        return (
+            <button
+                onClick={changeValue}
+                style={{
+                backgroundColor: 'tomato',
+                color: 'white',
+                padding: '10px 20px',
+                border: 0,
+                borderRadius: 10,
+                fontSize: fontSize
+            }}>{text}</button>
+        )
+    }
+    const MemorizedBtn = React.memo(Btn)
+    Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number,
+    }
+    function App() {
+        const [value, setValue] = React.useState("Save Change")
+        const changeValue = () => {
+            setValue("Revert Change")
+        }
+        return (
+            <div>
+                <Btn text={value} changeValue={changeValue}/>
+                <Btn fontSize={18}/>
+            </div>
+        )
+    }
+
+    const root = document.getElementById('root');
+    ReactDOM.render(<App/>, root);
+
+</script>
+</html>
+
+

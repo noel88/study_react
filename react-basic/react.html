@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById('root');
+    // const h3 = React.createElement(
+    //     'h3',
+    //     {
+    //         id: 'sexy-span',
+    //         style: {color: 'red'},
+    //         onMouseEnter: () => console.log('mouse Enter')
+    //     },
+    //     'hello I am span'
+    // );
+
+    // const Title = () => (
+    //     <h3 id='title'
+    //         onMouseEnter={() => console.log('mouse Enter')}>
+    //         Total Clicks: {counter}
+    //     </h3>
+    // );
+    //
+    // const Btn = () => (
+    //     <button style={{
+    //             backgroundColor: 'tomato',
+    //         }}
+    //             onClick={countUp}>
+    //         click me
+    //     </button>
+    // );
+    // const btn = React.createElement('button', {
+    //     onClick: () => console.log('im clicked')
+    // }, 'Click me');
+    // const container = React.createElement('div', null, [title, btn])
+    // function reader() {
+    //     ReactDOM.render(<Container/>, root);
+    // }
+    // let counter = 0;
+    // function countUp() {
+    //     counter = counter + 1;
+    //     // reader();
+    // }
+
+    function Container() {
+        const [counter, setCounter] = React.useState(0);
+        const onClick = () => {
+            // setCounter(counter+1)
+            setCounter((current) => current + 1)
+        }
+        return (<div>
+            <h3 id='title'>
+                Total Clicks: {counter}
+            </h3>
+            <button style={{
+                backgroundColor: 'tomato',
+            }} onClick={onClick}>
+                click me
+            </button>
+        </div>);
+    }
+
+    ReactDOM.render(<Container/>, root);
+
+</script>
+</html>
