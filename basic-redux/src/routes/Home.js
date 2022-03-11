@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {actionCreators} from "../store";
+import {add, remove} from "../store";
 import Todo from "../components/Todo";
 
 
@@ -19,7 +19,7 @@ function Home() {
   function onSubmit(e) {
     e.preventDefault();
     // addTodo(text);
-    dispatch(actionCreators.addTodo(text))
+    dispatch(add(text))
     setText("");
   }
 
@@ -47,7 +47,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addTodo: (text) => dispatch(actionCreators.addTodo(text))
+    // addTodo: (text) => dispatch(actionCreators.addTodo(text))
   };
 }
 
