@@ -6,6 +6,7 @@ const TodoActionType = {
 }
 
 const addTodo = (text) => {
+  console.log("add TODO")
   return {
     type: TodoActionType.ADD,
     text
