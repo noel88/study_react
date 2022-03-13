@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Router from "./Router";
-import {createGlobalStyle} from "styled-components";
+import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {ReactQueryDevtools} from "react-query/devtools";
+import {dartTheme, lightTheme} from "./theme";
 
 const GlobalStyle = createGlobalStyle`
  
@@ -76,11 +77,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [isDark, setIsDark] = useState(false);
+  const toggleDark = () => setIsDark((current) => !current);
   return (
     <>
-      <GlobalStyle />
-      <Router/>
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDark ? dartTheme :lightTheme}>
+        <button onClick={toggleDark}>Toggle Mod e</button>
+        <GlobalStyle />
+        <Router/>
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }
