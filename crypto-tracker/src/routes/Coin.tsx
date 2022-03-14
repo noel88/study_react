@@ -150,8 +150,15 @@ interface PriceData {
     };
   };
 }
+
+interface ICoinProps {
+  isDark: boolean;
+}
+
+
 //https://api.coinpaprika.com/v1/coins/:id
 //https://api.coinpaprika.com/v1/tickers/:id
+// function Coin({isDark}: ICoinProps) {
 function Coin() {
   // const [loading, setLoading] = useState(true);
   // const [info, setInfo] = useState<InfoData>();
@@ -226,6 +233,7 @@ function Coin() {
               <Price/>
             </Route>
             <Route path={`/:coinId/chart`}>
+              {/*<Chart isDark={isDark} coinId={coinId}/>*/}
               <Chart coinId={coinId}/>
             </Route>
           </Switch>

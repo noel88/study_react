@@ -3,6 +3,8 @@ import Router from "./Router";
 import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {ReactQueryDevtools} from "react-query/devtools";
 import {dartTheme, lightTheme} from "./theme";
+import {useRecoilValue} from "recoil";
+import {isDarkAtom} from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
  
@@ -77,18 +79,21 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
-  const toggleDark = () => setIsDark((current) => !current);
+  // const [isDark, setIsDark] = useState(false);
+  // const toggleDark = () => setIsDark((current) => !current);
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
       <ThemeProvider theme={isDark ? dartTheme :lightTheme}>
-        <button onClick={toggleDark}>Toggle Mod e</button>
         <GlobalStyle />
-        <Router/>
+        <Router />
+        {/*<Router isDark={isDark} toggleDark={toggleDark}/>*/}
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>
   );
 }
+
+
 
 export default App;
